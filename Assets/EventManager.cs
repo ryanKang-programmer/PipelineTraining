@@ -119,6 +119,8 @@ public class EventManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            next();
+            return;
             if (status == 2) {
                 resetTargetValve();
             }
