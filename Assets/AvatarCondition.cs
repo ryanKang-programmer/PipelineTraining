@@ -8,7 +8,7 @@ using Assets.SimpleSpinner;
 
 public class AvatarCondition : MonoBehaviour
 {
-    public GameObject avatar; // Assign your avatar in the Unity Inspector
+    public GameObject avatar;
     public AudioClip[] voiceClips; // Audio clips in the same order as promptsAgent
     private AudioSource audioSource;
 
@@ -24,6 +24,7 @@ public class AvatarCondition : MonoBehaviour
 
     GameObject textContainer;
     GameObject buttonContainer;
+    public GameObject plotContainer;
 
     TextMeshProUGUI titleText;
     TextMeshProUGUI detailText;
@@ -124,6 +125,11 @@ public class AvatarCondition : MonoBehaviour
         {
             textContainer.SetActive(false);
         }
+        if (plotContainer != null)
+        {
+            plotContainer.SetActive(false);
+        }
+
 
         if (isAvatar && voiceClips != null && voiceClips.Length > 0 && voiceClips[0] != null)
         {
@@ -297,6 +303,20 @@ public class AvatarCondition : MonoBehaviour
             if (textContainer != null) textContainer.SetActive(!isAvatar);
             if (buttonContainer != null) buttonContainer.SetActive(true);
         }
+
+        // Show PlotContainer only in status 1 and 4
+        if (plotContainer != null)
+        {
+            if (status == 1 || status == 4)
+            {
+                plotContainer.SetActive(true);
+            }
+            else
+            {
+                plotContainer.SetActive(false);
+            }
+        }
+
     }
 
     public void onEnteredGrabSpinner()
